@@ -51,14 +51,22 @@
       .kits-text {
         font-weight: 300;
       }
-      @media screen and (max-width: 799px) {
+      @media screen and (max-width: 959px) {
         #navbar-desktop {
           display: none;
         }
+        .kits-text { 
+          font-size: 0.8rem;
+        }
       }
-      @media screen and (min-width: 799px) {
+      @media screen and (min-width: 960px) {
         #navbar-mobile {
           display: none;
+        }
+      }
+      @media screen and (min-width: 990px) {
+        .kits-text {
+          font-size: 1.2rem;
         }
       }
 
@@ -73,7 +81,7 @@
       <nav class="navbar navbar-expand-sm fixed-top bg-light border-bottom border-dark">
             <a class="navbar-brand" href="/" ><img class="navbar-brand" src="https://cdn.bitrix24.com/b11768441/bitrix24/dc3/dc39c1c572ef439350627e8e79f7ff0d/logo_VZNb9pU4.png"></a>
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="text-dark nav-link" href="/">HOME</a>
               </li>
               <li class="nav-item dropdown">
@@ -97,7 +105,7 @@
                 <a class="text-dark nav-link" href="https://www.minhacasasolar.com.br/grupolistacompra/gerador-solar-uso-isolado-a-rede-publica-off-grid" tabindex="-1">OFF-GRID</a>
               </li>
               <li class="nav-item">
-                <a class="text-dark nav-link" href="https://www.minhacasasolar.com.br/atendimento" tabindex="-1">ATENDIMENTO</a>
+                <a class="text-dark nav-link" href="https://www.minhacasasolar.com.br/painel-solar" tabindex="-1">PAINEL</a>
               </li>
             </ul>
           <form class="form-inline my-2 my-lg-0">
@@ -107,8 +115,9 @@
           <a class="ml-4" href="/carrinho"><i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i></a>        
         </nav>
       </div>
+      
       <div id="navbar-mobile">
-        <nav class="navbar navbar-expand-md fixed-top border-bottom bg-light border-dark">
+        <nav class="navbar fixed-top border-bottom bg-light border-dark">
           <button id="mobile-icon" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars fa-2x"></i></button>
         </nav>
                   
@@ -139,24 +148,24 @@
               Nossos Kits são dimensionados com equipamentos de alta qualidade e desempenho para assegurar uma instalação segura e com longa vida útil.
             </p>
             </div>
-            <h3 class="mt-4">KITS PARA USO ISOLADO DA REDE (OFF-GRID)	</h3>
+            <h4 class="mt-4">KITS PARA USO ISOLADO DA REDE (OFF-GRID)	</h4>
             <div class="row">
-              <p class="kits-text col-md-6 col-lg-8">
+              <p class="kits-text col-md-7 col-lg-8">
                 Os Sistemas Fotovoltaicos Off-Grid geralmente são utilizados em regiões isoladas
                 e sem acesso à rede elétrica pública das distribuidoras.
                 A energia produzida pelos módulos fotovoltaicos (placas solares) fica armazenada em bancos de baterias para utilização
                 a qualquer hora do dia ou da noite.
               </p>
-              <img draggable="false" class="col-md-6 col-lg-4" src="https://recursos.minhacasasolar.com.br/MediaCenter/sistemas-isolados-da-rede-off-grid.png">
+              <img draggable="false" class="col-md-5 col-lg-4" src="https://recursos.minhacasasolar.com.br/MediaCenter/sistemas-isolados-da-rede-off-grid.png">
             </div>
-            <h3 class="mt-4">KITS PARA CONEXÃO À REDE (GRID-TIE)</h3>
+            <h4 class="mt-4">KITS PARA CONEXÃO À REDE (GRID-TIE)</h4>
             <div class="row">
-              <p class="kits-text col-md-6 col-lg-8 float-left">
+              <p class="kits-text col-md-7 col-lg-8 float-left">
                 Os Sistemas Fotovoltaicos Grid-Tie permitem a redução do consumo de energia e do valor pago para as distribuidoras.
                 Podem ser instalados em qualquer região atendida pela rede elétrica pública das distribuidoras
                 e são especialmente vantajosos para consumidores residenciais de áreas urbanas.
               </p>
-              <img draggable="false" class="col-md-6  col-lg-4" src="https://recursos.minhacasasolar.com.br/MediaCenter/sistemas-conectados-a-rede-grid-tie-3.png">
+              <img draggable="false" class="col-md-5  col-lg-4" src="https://recursos.minhacasasolar.com.br/MediaCenter/sistemas-conectados-a-rede-grid-tie-3.png">
             </div>
           </div>
           </div>
