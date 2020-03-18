@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      /*
+      .form-control:focus {
+          border-color: #44a56f!important;
+          box-shadow: 0 0 0 0.2rem #2e8b5740!important;
+      }
+      */
+
+      /*ul.navbar-nav.mr-auto {
+          flex-direction: row;
+      }*/
+      /*
+      ul.navbar-nav.mr-auto li {
+          margin-left: 1ch;
+      }
+      form.form-inline.my-2.my-lg-0 {
+          position: absolute;
+          right: 5%;
+      }*/
+
+      #mobile-icon {
+          width: auto;
+          background-color: unset;
+          border: none;
+          margin-left: auto;
+          margin-right: 2%;
+      }
+      a.dropdown-item:hover {
+        color: white;
+        background: #343a40;
+      }
+      @media screen and (max-width: 799px) {
+        #navbar-desktop {
+          display: none;
+        }
+      }
+      @media screen and (min-width: 799px) {
+        #navbar-mobile {
+          display: none;
+        }
+      }
+
+    </style>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Home</title>
+  </head>
+  <body>
+    <div id="navbar-desktop">
+      <nav class="navbar navbar-expand-sm fixed-top bg-light border-bottom border-dark">
+            <a class="navbar-brand" href="/" ><img class="navbar-brand" src="https://cdn.bitrix24.com/b11768441/bitrix24/dc3/dc39c1c572ef439350627e8e79f7ff0d/logo_VZNb9pU4.png"></a>
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="text-dark nav-link" href="/">HOME</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="text-dark nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  CATEGORIAS
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="https://www.minhacasasolar.com.br/painel-solar">Paineis</a>
+                  <a class="dropdown-item" href="https://www.minhacasasolar.com.br/inversor">Inversores</a>
+                  <!--<div class="dropdown-divider"></div>-->
+                  <a class="dropdown-item" href="https://www.minhacasasolar.com.br/controlador-de-carga">Controladores de Carga</a>
+                  <a class="dropdown-item"href="https://www.minhacasasolar.com.br/baterias">Baterias</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="https://www.minhacasasolar.com.br/bomba-de-agua-solar">Bomba de Água Solar</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="text-dark nav-link" href="https://www.minhacasasolar.com.br/grupolistacompra/gerador-solar-para-conexao-a-rede-publica-grid-tie">GRID-TIE</a>
+              </li>
+              <li class="nav-item">
+                <a class="text-dark nav-link" href="https://www.minhacasasolar.com.br/grupolistacompra/gerador-solar-uso-isolado-a-rede-publica-off-grid" tabindex="-1">OFF-GRID</a>
+              </li>
+              <li class="nav-item">
+                <a class="text-dark nav-link" href="https://www.minhacasasolar.com.br/atendimento" tabindex="-1">ATENDIMENTO</a>
+              </li>
+            </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Faça uma pesquisa" aria-label="Search">
+            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Pesquisar</button>
+          </form>
+          <a class="ml-4" href="/carrinho"><i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i></a>        
+        </nav>
+      </div>
+      <div id="navbar-mobile">
+        <nav class="navbar navbar-expand-md fixed-top border-bottom bg-light border-dark">
+          <button id="mobile-icon" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars fa-2x"></i></button>
+        </nav>
+                  
+        <div id="navbarToggleExternalContent" class="collapse">
+          <div class="bg-dark p2 text-center mt-5">
+            <p>
+              <a class="text-light" href="/">HOME</a>
+            </p>
+            <p>
+              <a class="text-light" href="https://www.minhacasasolar.com.br/grupolistacompra/gerador-solar-para-conexao-a-rede-publica-grid-tie">GRID-TIE</a>
+            </p>
+            <p>
+              <a class="text-light" href="https://www.minhacasasolar.com.br/grupolistacompra/gerador-solar-uso-isolado-a-rede-publica-off-grid" tabindex="-1">OFF-GRID</a>
+            </p>
+            <p>
+              <a class="text-light" href="https://www.minhacasasolar.com.br/atendimento" tabindex="-1">ATENDIMENTO</a>
+            </p>
+          </div>
+        </div>
+      </div>
+        <main role="main" class="container mt-4 p-4">
+        
+          <div class="content p-5">
+            <h2 class="mt-4 text-center">PRODUZA SUA PRÓPRIA ENERGIA!</h2>
+            <div class="mb-5">
+            <p class="lead mt-4">
+              Os Geradores Fotovoltaicos da Minha Casa Solar incluem os componentes essenciais para produção de energia elétrica onde você estiver por meio da luz o sol.
+              Nossos Kits são dimensionados com equipamentos de alta qualidade e desempenho para assegurar uma instalação segura e com longa vida útil.
+            </p>
+            </div>
+            <h3 class="mt-4">KITS PARA USO ISOLADO DA REDE (OFF-GRID)	</h3>
+            <div class="row">
+              <p class="lead col-8">
+                Os Sistemas Fotovoltaicos Off-Grid geralmente são utilizados em regiões isoladas
+                e sem acesso à rede elétrica pública das distribuidoras.
+                A energia produzida pelos módulos fotovoltaicos (placas solares) fica armazenada em bancos de baterias para utilização
+                a qualquer hora do dia ou da noite.
+              </p>
+              <img draggable="false" class="col-4 img-fluid rounded float-right" src="https://recursos.minhacasasolar.com.br/MediaCenter/sistemas-isolados-da-rede-off-grid.png">
+            </div>
+            <h3 class="mt-4">KITS PARA CONEXÃO À REDE (GRID-TIE)</h3>
+            <div class="row">
+              <p class="lead col-8">
+                Os Sistemas Fotovoltaicos Grid-Tie permitem a redução do consumo de energia e do valor pago para as distribuidoras.
+                Podem ser instalados em qualquer região atendida pela rede elétrica pública das distribuidoras
+                e são especialmente vantajosos para consumidores residenciais de áreas urbanas.
+              </p>
+              <img draggable="false" class="col-4 img-fluid rounded float-right" src="https://recursos.minhacasasolar.com.br/MediaCenter/sistemas-conectados-a-rede-grid-tie-3.png">
+            </div>
+          </div>
+          </div>
+          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      
+ 
+  </body>
+</html>
+
+<script>
+/*
+
+#fbits-vitrine-item-2 #precoparcelado2 {
+        top: 7vh;
+        left: -4.5vh;
+}
+
+#fbits-vitrine-item-2 #precoavista2 {
+        margin-top: 1.5ch;
+}
+*/
+</script>
+
