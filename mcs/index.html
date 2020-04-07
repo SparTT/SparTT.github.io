@@ -300,8 +300,6 @@
 
 <script>
 
-// addClass('fixed-top') qnd passar de uma altura X :D
-
 setInterval(function() {
   if( $(window).scrollTop() > 105) {
     document.querySelector('header').classList.add('fixed-top')
@@ -314,7 +312,7 @@ setInterval(function() {
 
 // fazer append dos href?
 
-k = [
+fabricante = [
   'https://recursos.minhacasasolar.com.br/MediaCenter/painel-solar-canadian.jpg',
   'https://recursos.minhacasasolar.com.br/MediaCenter/painel-solar-yingli.jpg',
   'https://recursos.minhacasasolar.com.br/MediaCenter/painel-solar-Talesun.jpg',
@@ -338,9 +336,9 @@ k = [
 
 function addFabricantes() {
   i = 0
-  while (k.length > 0) {
+  while (fabricante.length > 0) {
 
-      var l = k.splice(0, 4)
+      var l = fabricante.splice(0, 4)
 
     if( i == 0) {
       res = '<div class="carousel-item active">'
