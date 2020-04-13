@@ -1,234 +1,559 @@
 <?php
-/**
- * Simple and handy reporting chatbot for bitrix24
- */
+error_reporting(0);
 
-$appsConfig     = array();
-$configFileName = '/config_' . trim(str_replace('.', '_', $_REQUEST['auth']['domain'])) . '.php';
-if (file_exists(__DIR__ . $configFileName)) {
-   include_once __DIR__ . $configFileName;
-}
+
+
+#####################
+### CONFIG OF BOT ###
+#####################
+define('DEBUG_FILE_NAME', ''); // if you need read debug log, you should write unique log name
+define('CLIENT_ID', ''); // like 'app.67efrrt2990977.85678329' or 'local.57062d3061fc71.97850406' - This code should take in a partner's site, needed only if you want to write a message from Bot at any time without initialization by the user
+define('CLIENT_SECRET', ''); // like '8bb00435c88aaa3028a0d44320d60339' - TThis code should take in a partner's site, needed only if you want to write a message from Bot at any time without initialization by the user
+#####################
+
+
+
+
+writeToLog($_REQUEST, 'ImBot Event Query');
+
+$appsConfig = Array();
+if (file_exists(__DIR__.'/config.php'))
+	include(__DIR__.'/config.php');
+
 // receive event "new message for bot"
-if ($_REQUEST['event'] == 'ONIMBOTMESSAGEADD') {
-   // check the event - register this application or not
-   if (!isset($appsConfig[$_REQUEST['auth']['application_token']])) {
-      return false;
-   }
-   // response time
-   $arReport = getAnswer($_REQUEST['data']['PARAMS']['MESSAGE'], $_REQUEST['data']['PARAMS']['FROM_USER_ID']);
-   $arReport['attach'][] = array("MESSAGE" => "As soon as you're through with these tasks, just ask me [send=what's hot]What's hot?[/send] again – I'll give you more to have on your plate!");
-   
-   // send answer message
-   $result = restCommand('imbot.message.add', 
-      array(
-         "DIALOG_ID" => $_REQUEST['data']['PARAMS']['DIALOG_ID'],
-         "MESSAGE"   => $arReport['title'] . "\n" . $arReport['report'] . "\n",
-         "ATTACH"    => array_merge(
-            $arReport['attach']
-         ),
-      ), 
-      $_REQUEST["auth"]);
+if ($_REQUEST['event'] == 'ONIMBOTMESSAGEADD')
+{
+	// check the event - authorize this event or not
+	if (!isset($appsConfig[$_REQUEST['auth']['application_token']]))
+		return false;
 
-} // receive event "open private dialog with bot" or "join bot to group chat"
-else {
-   if ($_REQUEST['event'] == 'ONIMBOTJOINCHAT') {
-      // check the event - register this application or not
-      if (!isset($appsConfig[$_REQUEST['auth']['application_token']])) {
-         return false;
-      }
-      // send help message how to use chat-bot. For private chat and for group chat need send different instructions.
-      $result = restCommand('imbot.message.add', array(
-         "DIALOG_ID" => $_REQUEST['data']['PARAMS']['DIALOG_ID'],
-         "MESSAGE"   => "Hello! I'm Reportoo, I can be a pain in the butt because I'm honest and candid.",
-         "ATTACH"    => array(
-            array("MESSAGE" => "[send=what's hot]What's hot?[/send]"),
-         ),
-      ), $_REQUEST["auth"]);
+	// response time
+	$latency = (time()-$_REQUEST['ts']);
+	$latency = $latency > 60? (round($latency/60)).'m': $latency."s";
 
-   } // receive event "delete chat-bot"
-   else {
-      if ($_REQUEST['event'] == 'ONIMBOTDELETE') {
-         // check the event - register this application or not
-         if (!isset($appsConfig[$_REQUEST['auth']['application_token']])) {
-            return false;
-         }
-         // unset application variables
-         unset($appsConfig[$_REQUEST['auth']['application_token']]);
-         // save params
-         saveParams($appsConfig);
+	if ($_REQUEST['data']['PARAMS']['CHAT_ENTITY_TYPE'] == 'LINES')
+	{
+		list($message) = explode(" ", $_REQUEST['data']['PARAMS']['MESSAGE']);
+		if ($message == '1')
+		{
+			$result = restCommand('imbot.message.add', Array(
+				"DIALOG_ID" => $_REQUEST['data']['PARAMS']['DIALOG_ID'],
+				"MESSAGE" => 'Im EchoBot, i can repeat message after you and send menu in Open Channels![br]Look new chat-bot created specifically for Open Channels - [b]ITR Bot[/b] http://birix24.ru/~bot-itr',
+			), $_REQUEST["auth"]);
+		}
+		else if ($message == '0')
+		{
+			$result = restCommand('imbot.message.add', Array(
+				"DIALOG_ID" => $_REQUEST['data']['PARAMS']['DIALOG_ID'],
+				"MESSAGE" => 'Wait for an answer!',
+			), $_REQUEST["auth"]);
+		}
+	}
+	else
+	{
+		// send answer message
+		$result = restCommand('imbot.message.add', Array(
+			"DIALOG_ID" => $_REQUEST['data']['PARAMS']['DIALOG_ID'],
+			"MESSAGE" => "Message from bot",
+			"ATTACH" => Array(
+				Array("MESSAGE" => "reply: ".$_REQUEST['data']['PARAMS']['MESSAGE']),
+				Array("MESSAGE" => "latency: ".$latency)
+			)
+		), $_REQUEST["auth"]);
+	}
 
-      } // receive event "Application install"
-      else {
-         if ($_REQUEST['event'] == 'ONAPPINSTALL') {
-            // handler for events
-            $handlerBackUrl = ($_SERVER['SERVER_PORT'] == 443 ? 'https' : 'http') . '://' . $_SERVER['SERVER_NAME'] . (in_array($_SERVER['SERVER_PORT'],
-               array(80, 443)) ? '' : ':' . $_SERVER['SERVER_PORT']) . $_SERVER['SCRIPT_NAME'];
-            // If your application supports different localizations
-            // use $_REQUEST['data']['LANGUAGE_ID'] to load correct localization
-            // register new bot
-            $result = restCommand('imbot.register', array(
-               'CODE'                  => 'ReportBot',
-               // app unique string bot ID (required)
-               'TYPE'                  => 'B',
-               // Bot type: B – robot with immediate response; H – human-like bot with a response delay from 2 to 10 seconds
-               'EVENT_MESSAGE_ADD'     => $handlerBackUrl,
-               // new message from user" event handler (required)
-               'EVENT_WELCOME_MESSAGE' => $handlerBackUrl,
-               // "bot invited" event handler (required)
-               'EVENT_BOT_DELETE'      => $handlerBackUrl,
-               // "user deleted bot" event handler (required)
-               'PROPERTIES'            => array( // Chatbot personal data (required)
-                  'NAME'              => 'Reportoo',
-                  // Bot name (NAME either LAST_NAME is required)
-                  'LAST_NAME'         => '',
-                  // Bot name (NAME either LAST_NAME is required)
-                  'COLOR'             => 'AQUA',
-                  // Bot color for mobile app: RED, GREEN, MINT, LIGHT_BLUE, DARK_BLUE, PURPLE, AQUA, PINK, LIME, BROWN, AZURE, KHAKI, SAND, MARENGO, GRAY, GRAPHITE
-                  'EMAIL'             => 'no@mail.com',
-                  // bot e-mail
-                  'PERSONAL_BIRTHDAY' => '2016-03-23',
-                  // birthday, YYYY-mm-dd
-                  'WORK_POSITION'     => "I'm here to tell you about your tasks",
-                  // Position – used as bot description
-                  'PERSONAL_WWW'      => '',
-                  // site link
-                  'PERSONAL_GENDER'   => 'M',
-                  // Bot gender, (M)ale or (F)emale or empty, if not required
-                  'PERSONAL_PHOTO'    => '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',
-                  // Bot avatar - base64
-               ),
-            ), $_REQUEST["auth"]);
-            // save params
-            $appsConfig[$_REQUEST['auth']['application_token']] = array(
-               'BOT_ID'      => $result['result'],
-               'LANGUAGE_ID' => $_REQUEST['data']['LANGUAGE_ID'],
-            );
-            saveParams($appsConfig);
-            // write debug log
-            // writeToLog($result, 'ReportBot register');
-         }
-      }
-   }
+	// write debug log
+	writeToLog($result, 'ImBot Event message add');
 }
+// receive event "new command for bot"
+if ($_REQUEST['event'] == 'ONIMCOMMANDADD')
+{
+	// check the event - authorize this event or not
+	if (!isset($appsConfig[$_REQUEST['auth']['application_token']]))
+		return false;
+
+	// response time
+	$latency = (time()-$_REQUEST['ts']);
+	$latency = $latency > 60? (round($latency/60)).'m': $latency."s";
+
+	$result = false;
+	foreach ($_REQUEST['data']['COMMAND'] as $command)
+	{
+		if ($command['COMMAND'] == 'echo')
+		{
+			$result = restCommand('imbot.command.answer', Array(
+				"COMMAND_ID" => $command['COMMAND_ID'],
+				"MESSAGE_ID" => $command['MESSAGE_ID'],
+				"MESSAGE" => "Answer command",
+				"ATTACH" => Array(
+					Array("MESSAGE" => "reply: /".$command['COMMAND'].' '.$command['COMMAND_PARAMS']),
+					Array("MESSAGE" => "latency: ".$latency),
+				)
+			), $_REQUEST["auth"]);
+		}
+		else if ($command['COMMAND'] == 'echoList')
+		{
+			$initList = false;
+			if (!$command['COMMAND_PARAMS'])
+			{
+				$initList = true;
+				$command['COMMAND_PARAMS'] = 1;
+			}
+
+			$attach = Array();
+			if ($command['COMMAND_PARAMS'] == 1)
+			{
+				$attach[] = Array("GRID" => Array(
+					Array("VALUE" => "RED","DISPLAY" => "LINE", "WIDTH" => 100),
+					Array("VALUE" => "#df532d","COLOR" => "#df532d","DISPLAY" => "LINE"),
+				));
+				$attach[] = Array("GRID" => Array(
+					Array("VALUE" => "GRAPHITE", "DISPLAY" => "LINE", "WIDTH" => 100),
+					Array("VALUE" => "#3a403e", "COLOR" => "#3a403e", "DISPLAY" => "LINE"),
+				));
+			}
+			else if ($command['COMMAND_PARAMS'] == 2)
+			{
+				$attach[] = Array("GRID" => Array(
+					Array("VALUE" => "MINT","DISPLAY" => "LINE", "WIDTH" => 100),
+					Array("VALUE" => "#4ba984","COLOR" => "#4ba984","DISPLAY" => "LINE"),
+				));
+				$attach[] = Array("GRID" => Array(
+					Array("VALUE" => "LIGHT BLUE", "DISPLAY" => "LINE", "WIDTH" => 100),
+					Array("VALUE" => "#6fc8e5", "COLOR" => "#6fc8e5", "DISPLAY" => "LINE"),
+				));
+			}
+			else if ($command['COMMAND_PARAMS'] == 3)
+			{
+				$attach[] = Array("GRID" => Array(
+					Array("VALUE" => "PURPLE","DISPLAY" => "LINE", "WIDTH" => 100),
+					Array("VALUE" => "#8474c8","COLOR" => "#8474c8","DISPLAY" => "LINE"),
+				));
+				$attach[] = Array("GRID" => Array(
+					Array("VALUE" => "AQUA", "DISPLAY" => "LINE", "WIDTH" => 100),
+					Array("VALUE" => "#1eb4aa", "COLOR" => "#1eb4aa", "DISPLAY" => "LINE"),
+				));
+			}
+			else if ($command['COMMAND_PARAMS'] == 4)
+			{
+				$attach[] = Array("GRID" => Array(
+					Array("VALUE" => "PINK","DISPLAY" => "LINE", "WIDTH" => 100),
+					Array("VALUE" => "#e98fa6","COLOR" => "#e98fa6","DISPLAY" => "LINE"),
+				));
+				$attach[] = Array("GRID" => Array(
+					Array("VALUE" => "LIME", "DISPLAY" => "LINE", "WIDTH" => 100),
+					Array("VALUE" => "#85cb7b", "COLOR" => "#85cb7b", "DISPLAY" => "LINE"),
+				));
+			}
+			else if ($command['COMMAND_PARAMS'] == 5)
+			{
+				$attach[] = Array("GRID" => Array(
+					Array("VALUE" => "AZURE","DISPLAY" => "LINE", "WIDTH" => 100),
+					Array("VALUE" => "#29619b","COLOR" => "#29619b","DISPLAY" => "LINE"),
+				));
+				$attach[] = Array("GRID" => Array(
+					Array("VALUE" => "ORANGE", "DISPLAY" => "LINE", "WIDTH" => 100),
+					Array("VALUE" => "#e8a441", "COLOR" => "#e8a441", "DISPLAY" => "LINE"),
+				));
+			}
+			$keyboard = Array(
+				Array("TEXT" => $command['COMMAND_PARAMS'] == 1? "· 1 ·": "1", "COMMAND" => "echoList", "COMMAND_PARAMS" => "1", "DISPLAY" => "LINE", "BLOCK" => "Y"),
+				Array("TEXT" => $command['COMMAND_PARAMS'] == 2? "· 2 ·": "2", "COMMAND" => "echoList", "COMMAND_PARAMS" => "2", "DISPLAY" => "LINE", "BLOCK" => "Y"),
+				Array("TEXT" => $command['COMMAND_PARAMS'] == 3? "· 3 ·": "3", "COMMAND" => "echoList", "COMMAND_PARAMS" => "3", "DISPLAY" => "LINE", "BLOCK" => "Y"),
+				Array("TEXT" => $command['COMMAND_PARAMS'] == 4? "· 4 ·": "4", "COMMAND" => "echoList", "COMMAND_PARAMS" => "4", "DISPLAY" => "LINE", "BLOCK" => "Y"),
+				Array("TEXT" => $command['COMMAND_PARAMS'] == 5? "· 5 ·": "5", "COMMAND" => "echoList", "COMMAND_PARAMS" => "5", "DISPLAY" => "LINE", "BLOCK" => "Y"),
+			);
+
+			if (!$initList && $command['COMMAND_CONTEXT'] == 'KEYBOARD')
+			{
+				$result = restCommand('imbot.message.update', Array(
+					"BOT_ID" => $command['BOT_ID'],
+					"MESSAGE_ID" => $command['MESSAGE_ID'],
+					"ATTACH" => $attach,
+					"KEYBOARD" => $keyboard
+				), $_REQUEST["auth"]);
+			}
+			else
+			{
+				$result = restCommand('imbot.command.answer', Array(
+					"COMMAND_ID" => $command['COMMAND_ID'],
+					"MESSAGE_ID" => $command['MESSAGE_ID'],
+					"MESSAGE" => "List of colors",
+					"ATTACH" => $attach,
+					"KEYBOARD" => $keyboard
+				), $_REQUEST["auth"]);
+			}
+		}
+		else if ($command['COMMAND'] == 'help')
+		{
+			$keyboard = Array(
+				Array(
+					"TEXT" => "Bitrix24",
+					'LINK' => "http://bitrix24.com",
+					"BG_COLOR" => "#29619b",
+					"TEXT_COLOR" => "#fff",
+					"DISPLAY" => "LINE",
+				),
+				Array(
+					"TEXT" => "BitBucket",
+					"LINK" => "https://bitbucket.org/Bitrix24com/rest-bot-echotest",
+					"BG_COLOR" => "#2a4c7c",
+					"TEXT_COLOR" => "#fff",
+					"DISPLAY" => "LINE",
+				),
+				Array("TYPE" => "NEWLINE"),
+				Array("TEXT" => "Echo", "COMMAND" => "echo", "COMMAND_PARAMS" => "test from keyboard", "DISPLAY" => "LINE"),
+				Array("TEXT" => "List", "COMMAND" => "echoList", "DISPLAY" => "LINE"),
+				Array("TEXT" => "Help", "COMMAND" => "help", "DISPLAY" => "LINE"),
+			);
+
+			$result = restCommand('imbot.command.answer', Array(
+				"COMMAND_ID" => $command['COMMAND_ID'],
+				"MESSAGE_ID" => $command['MESSAGE_ID'],
+				"MESSAGE" => "Hello! My name is EchoBot :)[br] I designed to answer your questions!",
+				"KEYBOARD" => $keyboard
+			), $_REQUEST["auth"]);
+		}
+	}
+
+	// write debug log
+	writeToLog($result, 'ImBot Event message add');
+}
+// receive event "open private dialog with bot" or "join bot to group chat"
+else if ($_REQUEST['event'] == 'ONIMBOTJOINCHAT')
+{
+	// check the event - authorize this event or not
+	if (!isset($appsConfig[$_REQUEST['auth']['application_token']]))
+		return false;
+
+	if ($_REQUEST['data']['PARAMS']['CHAT_ENTITY_TYPE'] == 'LINES')
+	{
+		$message =
+			'ITR Menu:[br]'.
+			'[send=1]1. find out more about me[/send][br]'.
+			'[send=0]0. wait for operator response[/send]';
+
+		// send help message how to use chat-bot. For private chat and for group chat need send different instructions.
+		$result = restCommand('imbot.message.add', Array(
+			"DIALOG_ID" => $_REQUEST['data']['PARAMS']['DIALOG_ID'],
+			"MESSAGE" => $message,
+		), $_REQUEST["auth"]);
+	}
+	else
+	{
+		// send help message how to use chat-bot. For private chat and for group chat need send different instructions.
+		$result = restCommand('imbot.message.add', Array(
+			"DIALOG_ID" => $_REQUEST['data']['PARAMS']['DIALOG_ID'],
+			"MESSAGE" => "Welcome message from bot.",
+			"ATTACH" => Array(
+				Array("MESSAGE" => ($_REQUEST['data']['PARAMS']['CHAT_TYPE'] == 'P'? 'Private instructions': 'Chat instructions')),
+				Array("MESSAGE" => ($_REQUEST['data']['PARAMS']['CHAT_TYPE'] == 'P'? '[send=send message]Click for send[/send] or [put=something...]write something[/put]': "[send=send message]click for send[/send] or [put=put message to textarea]click for put[/put]")),
+			),
+			"KEYBOARD" => Array(
+				Array("TEXT" => "Help", "COMMAND" => "help"),
+			)
+		), $_REQUEST["auth"]);
+	}
+
+
+	// write debug log
+	writeToLog($result, 'ImBot Event join chat');
+}
+// receive event "delete chat-bot"
+else if ($_REQUEST['event'] == 'ONIMBOTDELETE')
+{
+	// check the event - authorize this event or not
+	if (!isset($appsConfig[$_REQUEST['auth']['application_token']]))
+		return false;
+
+	// unset application variables
+	unset($appsConfig[$_REQUEST['auth']['application_token']]);
+
+	// save params
+	saveParams($appsConfig);
+
+	// write debug log
+	writeToLog($_REQUEST['event'], 'ImBot unregister');
+}
+// execute custom action
+else if ($_REQUEST['event'] == 'PUBLISH')
+{
+    // This event is a CUSTOM event and is not sent from platform Bitrix24
+	// Example: https://example.com/bot.php?event=PUBLISH&application_token=XXX&PARAMS[DIALOG_ID]=1&PARAMS[MESSAGE]=Hello!
+	// example.com - change to you domain name with bot script
+	// XXX - change to you application token from config.php
+
+	// check the event - authorize this event or not
+	if (!isset($appsConfig[$_REQUEST['application_token']]))
+		return false;
+
+	// send answer message
+	$result = restCommand('imbot.message.add', $_REQUEST['PARAMS'], $appsConfig[$_REQUEST['application_token']]['AUTH']);
+
+	// write debug log
+	writeToLog($result, 'ImBot Event message add');
+
+	echo 'Method executed';
+}
+// receive event "Application install"
+else if ($_REQUEST['event'] == 'ONAPPINSTALL')
+{
+	// handler for events
+	$handlerBackUrl = ($_SERVER['SERVER_PORT']==443||$_SERVER["HTTPS"]=="on"? 'https': 'http')."://".$_SERVER['SERVER_NAME'].(in_array($_SERVER['SERVER_PORT'], Array(80, 443))?'':':'.$_SERVER['SERVER_PORT']).$_SERVER['SCRIPT_NAME'];
+
+	// If your application supports different localizations
+	// use $_REQUEST['data']['LANGUAGE_ID'] to load correct localization
+
+	// register new bot
+	$result = restCommand('imbot.register', Array(
+		'CODE' => 'echobot',
+		'TYPE' => 'B',
+		'EVENT_MESSAGE_ADD' => $handlerBackUrl,
+		'EVENT_WELCOME_MESSAGE' => $handlerBackUrl,
+		'EVENT_BOT_DELETE' => $handlerBackUrl,
+		'OPENLINE' => 'Y', // this flag only for Open Channel mode http://bitrix24.ru/~bot-itr
+		'PROPERTIES' => Array(
+			'NAME' => 'EchoBot '.(count($appsConfig)+1),
+			'COLOR' => 'GREEN',
+			'EMAIL' => 'test@test.ru',
+			'PERSONAL_BIRTHDAY' => '2016-03-11',
+			'WORK_POSITION' => 'My first echo bot',
+			'PERSONAL_WWW' => 'http://bitrix24.com',
+			'PERSONAL_GENDER' => 'M',
+			'PERSONAL_PHOTO' => base64_encode(file_get_contents(__DIR__.'/avatar.png')),
+		)
+	), $_REQUEST["auth"]);
+	$botId = $result['result'];
+
+	$result = restCommand('imbot.command.register', Array(
+		'BOT_ID' => $botId,
+		'COMMAND' => 'echo',
+		'COMMON' => 'Y',
+		'HIDDEN' => 'N',
+		'EXTRANET_SUPPORT' => 'N',
+		'LANG' => Array(
+			Array('LANGUAGE_ID' => 'en', 'TITLE' => 'Get echo message', 'PARAMS' => 'some text'),
+		),
+		'EVENT_COMMAND_ADD' => $handlerBackUrl,
+	), $_REQUEST["auth"]);
+	$commandEcho = $result['result'];
+
+	$result = restCommand('imbot.command.register', Array(
+		'BOT_ID' => $botId,
+		'COMMAND' => 'echoList',
+		'COMMON' => 'N',
+		'HIDDEN' => 'N',
+		'EXTRANET_SUPPORT' => 'N',
+		'LANG' => Array(
+			Array('LANGUAGE_ID' => 'en', 'TITLE' => 'Get list of colors', 'PARAMS' => ''),
+		),
+		'EVENT_COMMAND_ADD' => $handlerBackUrl,
+	), $_REQUEST["auth"]);
+	$commandList = $result['result'];
+
+	$result = restCommand('imbot.command.register', Array(
+		'BOT_ID' => $botId,
+		'COMMAND' => 'help',
+		'COMMON' => 'N',
+		'HIDDEN' => 'N',
+		'EXTRANET_SUPPORT' => 'N',
+		'LANG' => Array(
+			Array('LANGUAGE_ID' => 'en', 'TITLE' => 'Get help message', 'PARAMS' => 'some text'),
+		),
+		'EVENT_COMMAND_ADD' => $handlerBackUrl,
+	), $_REQUEST["auth"]);
+	$commandHelp = $result['result'];
+
+	$result = restCommand('event.bind', Array(
+		'EVENT' => 'OnAppUpdate',
+		'HANDLER' => $handlerBackUrl
+	), $_REQUEST["auth"]);
+
+	// save params
+	$appsConfig[$_REQUEST['auth']['application_token']] = Array(
+		'BOT_ID' => $botId,
+		'COMMAND_ECHO' => $commandEcho,
+		'COMMAND_HELP' => $commandHelp,
+		'COMMAND_LIST' => $commandList,
+		'LANGUAGE_ID' => $_REQUEST['data']['LANGUAGE_ID'],
+		'AUTH' => $_REQUEST['auth'],
+	);
+	saveParams($appsConfig);
+
+	// write debug log
+	writeToLog(Array($botId, $commandEcho, $commandHelp, $commandList), 'ImBot register');
+}
+// receive event "Application install"
+else if ($_REQUEST['event'] == 'ONAPPUPDATE')
+{
+	// check the event - authorize this event or not
+	if (!isset($appsConfig[$_REQUEST['auth']['application_token']]))
+		return false;
+
+	if ($_REQUEST['data']['VERSION'] == 2)
+	{
+		// Some logic in update event for VERSION 2
+		// You can execute any method RestAPI, BotAPI or ChatAPI, for example delete or add a new command to the bot
+		/*
+		$result = restCommand('...', Array(
+			'...' => '...',
+		), $_REQUEST["auth"]);
+		*/
+
+		/*
+		For example delete "Echo" command:
+
+		$result = restCommand('imbot.command.unregister', Array(
+			'COMMAND_ID' => $appsConfig[$_REQUEST['auth']['application_token']]['COMMAND_ECHO'],
+		), $_REQUEST["auth"]);
+		*/
+	}
+	else
+	{
+		// send answer message
+		$result = restCommand('app.info', array(), $_REQUEST["auth"]);
+	}
+
+	// write debug log
+	writeToLog($result, 'ImBot update event');
+}
+
 /**
  * Save application configuration.
+ * WARNING: this method is only created for demonstration, never store config like this
  *
  * @param $params
- *
  * @return bool
  */
-function saveParams($params) {
-   $config = "<?php\n";
-   $config .= "\$appsConfig = " . var_export($params, true) . ";\n";
-   $config .= "?>";
-   $configFileName = '/config_' . trim(str_replace('.', '_', $_REQUEST['auth']['domain'])) . '.php';
-   file_put_contents(__DIR__ . $configFileName, $config);
-   return true;
+function saveParams($params)
+{
+	$config = "<?php\n";
+	$config .= "\$appsConfig = ".var_export($params, true).";\n";
+	$config .= "?>";
+
+	file_put_contents(__DIR__."/config.php", $config);
+
+	return true;
 }
+
 /**
  * Send rest query to Bitrix24.
  *
- * @param       $method - Rest method, ex: methods
- * @param array $params - Method params, ex: array()
- * @param array $auth   - Authorize data, ex: array('domain' => 'https://test.bitrix24.com', 'access_token' => '7inpwszbuu8vnwr5jmabqa467rqur7u6')
- *
+ * @param $method - Rest method, ex: methods
+ * @param array $params - Method params, ex: Array()
+ * @param array $auth - Authorize data, received from event
+ * @param boolean $authRefresh - If authorize is expired, refresh token
  * @return mixed
  */
-function restCommand($method, array $params = array(), array $auth = array()) {
-   $queryUrl  = 'https://' . $auth['domain'] . '/rest/' . $method;
-   $queryData = http_build_query(array_merge($params, array('auth' => $auth['access_token'])));
-   // writeToLog(array('URL' => $queryUrl, 'PARAMS' => array_merge($params, array("auth" => $auth["access_token"]))), 'ReportBot send data');
-   $curl = curl_init();
-   curl_setopt_array($curl, array(
-      CURLOPT_POST           => 1,
-      CURLOPT_HEADER         => 0,
-      CURLOPT_RETURNTRANSFER => 1,
-      CURLOPT_URL            => $queryUrl,
-      CURLOPT_POSTFIELDS     => $queryData,
-   ));
-   $result = curl_exec($curl);
-   curl_close($curl);
-   $result = json_decode($result, 1);
-   return $result;
+function restCommand($method, array $params = Array(), array $auth = Array(), $authRefresh = true)
+{
+	$queryUrl = $auth["client_endpoint"].$method;
+	$queryData = http_build_query(array_merge($params, array("auth" => $auth["access_token"])));
+
+	writeToLog(Array('URL' => $queryUrl, 'PARAMS' => array_merge($params, array("auth" => $auth["access_token"]))), 'ImBot send data');
+
+	$curl = curl_init();
+
+	curl_setopt_array($curl, array(
+		CURLOPT_POST => 1,
+		CURLOPT_HEADER => 0,
+		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_SSL_VERIFYPEER => 1,
+		CURLOPT_URL => $queryUrl,
+		CURLOPT_POSTFIELDS => $queryData,
+	));
+
+	$result = curl_exec($curl);
+	curl_close($curl);
+
+	$result = json_decode($result, 1);
+
+	if ($authRefresh && isset($result['error']) && in_array($result['error'], array('expired_token', 'invalid_token')))
+	{
+		$auth = restAuth($auth);
+		if ($auth)
+		{
+			$result = restCommand($method, $params, $auth, false);
+		}
+	}
+
+	return $result;
 }
+
 /**
- * Write data to log file.
+ * Get new authorize data if you authorize is expire.
  *
- * @param mixed  $data
+ * @param array $auth - Authorize data, received from event
+ * @return bool|mixed
+ */
+function restAuth($auth)
+{
+	if (!CLIENT_ID || !CLIENT_SECRET)
+		return false;
+
+	if(!isset($auth['refresh_token']))
+		return false;
+
+	$queryUrl = 'https://oauth.bitrix.info/oauth/token/';
+	$queryData = http_build_query($queryParams = array(
+		'grant_type' => 'refresh_token',
+		'client_id' => CLIENT_ID,
+		'client_secret' => CLIENT_SECRET,
+		'refresh_token' => $auth['refresh_token'],
+	));
+
+	writeToLog(Array('URL' => $queryUrl, 'PARAMS' => $queryParams), 'ImBot request auth data');
+
+	$curl = curl_init();
+
+	curl_setopt_array($curl, array(
+		CURLOPT_HEADER => 0,
+		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_URL => $queryUrl.'?'.$queryData,
+	));
+
+	$result = curl_exec($curl);
+	curl_close($curl);
+
+	$result = json_decode($result, 1);
+	if (!isset($result['error']))
+	{
+		$appsConfig = Array();
+		if (file_exists(__DIR__.'/config.php'))
+			include(__DIR__.'/config.php');
+
+		$result['application_token'] = $auth['application_token'];
+		$appsConfig[$auth['application_token']]['AUTH'] = $result;
+		saveParams($appsConfig);
+	}
+	else
+	{
+		$result = false;
+	}
+
+	return $result;
+}
+
+/**
+ * Write data to log file. (by default disabled)
+ * WARNING: this method is only created for demonstration, never store log file in public folder
+ *
+ * @param mixed $data
  * @param string $title
- *
  * @return bool
  */
-function writeToLog($data, $title = '') {
-   $log = "\n------------------------\n";
-   $log .= date("Y.m.d G:i:s") . "\n";
-   $log .= (strlen($title) > 0 ? $title : 'DEBUG') . "\n";
-   $log .= print_r($data, 1);
-   $log .= "\n------------------------\n";
-   file_put_contents(__DIR__ . '/imbot.log', $log, FILE_APPEND);
-   return true;
-}
-/**
- * Command received, create report
- *
- * @param      string $text message sent by user
-  * @param      int $user user ID
- *
- * @return     array
- */
-function getAnswer($command = '', $user) {
+function writeToLog($data, $title = '')
+{
+	if (!DEBUG_FILE_NAME)
+		return false;
 
-   switch (strtolower($command)) {
-       case "what's hot":
-           $arResult = b24BadTasks($user);
-           break;
-       default:
-          $arResult = array(
-            "title" => "I'm stuck",
-            "report"  => "Sorry, what is it you wanted? I can't hear you!",
-         );
-   }
+	$log = "\n------------------------\n";
+	$log .= date("Y.m.d G:i:s")."\n";
+	$log .= (strlen($title) > 0 ? $title : 'DEBUG')."\n";
+	$log .= print_r($data, 1);
+	$log .= "\n------------------------\n";
 
-   return $arResult;
-}
+	file_put_contents(__DIR__."/".DEBUG_FILE_NAME, $log, FILE_APPEND);
 
-function b24BadTasks ($user) {
-   $tasks = restCommand('task.item.list', 
-      array(
-         'ORDER' => array('DEADLINE' => 'desc'),
-         'FILTER' => array('RESPONSIBLE_ID' => $user, '<DEADLINE' => '2016-03-23'),
-         'PARAMS' => array(),
-         'SELECT' => array()
-      ), 
-      $_REQUEST["auth"]);
-   
-   if (count($tasks['result']) > 0) {
-      $arTasks = array();
-      foreach ($tasks['result'] as $id => $arTask) {
-         $arTasks[] = array(
-            'LINK' => array(
-               'NAME' => $arTask['TITLE'],
-               'LINK' => 'https://'.$_REQUEST['auth']['domain'].'/company/personal/user/'.$arTask['RESPONSIBLE_ID'].'/tasks/task/view/'.$arTask['ID'].'/'
-            )
-         );
-         $arTasks[] = array(
-            'DELIMITER' => array(
-               'SIZE' => 400,
-               'COLOR' => '#c6c6c6'
-            )
-         );
-      }
-      $arReport = array(
-         "title" => "Oh yeah, we've got trouble. Tackle these ASAP:",
-         "report"  => '',
-         "attach" => $arTasks
-      );
-   }
-   else {
-      $arReport = array(
-         "title" => "You're awesome!",
-         "report"  => "You're no fun, no tasks overdue. Just joking, keep it up!",
-      );
-   }
-   return $arReport;
+	return true;
 }
