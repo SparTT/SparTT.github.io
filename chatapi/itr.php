@@ -7,8 +7,8 @@ error_reporting(0);
 ### CONFIG OF BOT ###
 #####################
 define('DEBUG_FILE_NAME', ''); // if you need read debug log, you should write unique log name
-define('CLIENT_ID', ' local.5e94671f8e8e47.81549378'); // like 'app.67efrrt2990977.85678329' or 'local.57062d3061fc71.97850406' - This code should take in a partner's site, needed only if you want to write a message from Bot at any time without initialization by the user
-define('CLIENT_SECRET', 'CVzq55IUuCPLxNYNJd6QUGZZjb8FT4JLcHJlCb80lmG3KTkS2m'); // like '8bb00435c88aaa3028a0d44320d60339' - TThis code should take in a partner's site, needed only if you want to write a message from Bot at any time without initialization by the user
+define('CLIENT_ID', 'local.5e970dda6dd942.84852333'); // like 'app.67efrrt2990977.85678329' or 'local.57062d3061fc71.97850406' - This code should take in a partner's site, needed only if you want to write a message from Bot at any time without initialization by the user
+define('CLIENT_SECRET', 'yBhB2HfsGV6EvbknipmXAOhUShrle9IkhS4xaUEOsg2eptnV4G'); // like '8bb00435c88aaa3028a0d44320d60339' - TThis code should take in a partner's site, needed only if you want to write a message from Bot at any time without initialization by the user
 #####################
 
 
