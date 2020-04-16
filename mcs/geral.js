@@ -1,5 +1,6 @@
+// 105, 75
 setInterval(function() {
-  if( $(window).scrollTop() > 75) {
+  if( $(window).scrollTop() > 155) {
     document.querySelector('header').classList.add('fixed-top')
     document.querySelector('#carousel-mcs').style.marginTop = '7rem'
   }else {
