@@ -20,35 +20,34 @@
     <title>Seja um integrador</title>
   </head>
   <body>
-       <header class="bg-light border-bottom border-dark">
-        
-        <div id="topbar" class="navbar" style="background-color: #faa633;padding: 0ch;">
-          <ul class="navbar-nav navbar-expand mx-auto py-1" style="font-size: 12px;">
-            <li class="nav-item mx-2">
-              <a class="text-light nav-link" href="/mcs/atendimento" tabindex="-1">ATENDIMENTO</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="text-light nav-link" href="https://www.minhacasasolar.com.br/integradores">INTEGRADORES</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="text-light nav-link" href="http://blog.minhacasasolar.com.br/">BLOG</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="text-light nav-link" href="https://www.minhacasasolar.com.br/simulador-solar">SIMULADOR SOLAR</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="text-light nav-link" href="tel:(31) 3479-1400"> <i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> (31) 3479-1400 </a>
-            </li>
-          </ul>
-          <div class="icons-nav ml-auto mr-3">
-            <a href="/carrinho"><i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i></a> 
+         <header class="bg-light border-bottom border-dark">
+
+        <div style="background-color: #faa633;padding: 0ch;">
+          <div id="topbar" class="navbar container">
+            <ul class="navbar-nav navbar-expand mx-auto py-0" style="font-size: 13px;">
+              <li class="nav-item mx-2">
+                <a class="text-light nav-link" href="/mcs/atendimento" tabindex="-1">ATENDIMENTO</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a class="text-light nav-link" href="https://www.minhacasasolar.com.br/integradores">INTEGRADORES</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a class="text-light nav-link" href="http://blog.minhacasasolar.com.br/">BLOG</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a class="text-light nav-link" href="https://www.minhacasasolar.com.br/simulador-solar">SIMULADOR SOLAR</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a class="text-light nav-link" href="tel:(31) 3479-1400"> <i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> (31) 3479-1400 </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div class="mt-4 mb-2">
+        <div class="container mb-2">
           <div class="row" style="align-items: center;">
-            <div class="col-auto ml-md-3 col-lg-auto">
-              <a class="ml-2" href="/mcs/" ><img src="https://cdn.bitrix24.com/b11768441/bitrix24/dc3/dc39c1c572ef439350627e8e79f7ff0d/logo_VZNb9pU4.png"></a>
+            <div class="col-auto col-lg-auto">
+              <a href="/mcs/" ><img src="https://cdn.bitrix24.com/b11768441/bitrix24/dc3/dc39c1c572ef439350627e8e79f7ff0d/logo_VZNb9pU4.png"></a>
             </div>
             <!--Mobile -->
             <div class="row icons-nav col-7 col-md-9 col-lg-auto mt-3 mb-4">
@@ -58,14 +57,14 @@
               <div class="hide-desktop col-auto px-2">
                 <a href="/carrinho"><i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i></a> 
               </div>
-              <div class="hide-desktop col-auto ml-4 px-1">
+              <div class="hide-desktop col-auto ml-2 px-1">
                 <a class="" type="button" data-toggle="collapse" data-target="#header-navbar" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
                   <i class="fa fa-bars text-dark fa-2x" aria-hidden="true"></i>
                 </a>
               </div> 
             </div>
             
-            <div class="col-md-12 col-lg-6 mt-2">
+            <div class="col-12 col-md-12 col-lg-6 mt-2">
               <form class="form-row ml-2">
                 <div class="col-8 col-md-10">
                 <input class="form-control border border-dark" type="search" placeholder="Faça uma pesquisa" aria-label="Search">
@@ -76,7 +75,7 @@
               </form>
             </div>
             <!-- Desktop -->
-            <div class="row hide-mobile col-lg-auto mt-3">
+            <div class="row hide-mobile col-lg-auto mt-3 ml-2">
               <div class="hide-mobile col-auto text-right">
                 <p>Olá! Seja bem vindo
                   <br/>
@@ -87,7 +86,11 @@
                 <a href="/minha-conta"><i class="fa fa-user-o text-dark fa-2x" aria-hidden="true"></i></a>
               </div>
             </div>
-
+            <div class="hide-mobile col-lg-auto">
+              <div class="px-2">
+                <a href="/carrinho"><i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i></a> 
+              </div>
+            </div>
           </div>
         </div>
         
@@ -222,6 +225,8 @@
       </button>
     </div>        
   </header>
+
+  <!-- Fixed header -->
 
 
     <main role="main" class="container mt-4">
