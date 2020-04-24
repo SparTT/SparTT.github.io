@@ -1,10 +1,15 @@
-// 105, 75
 setInterval(function() {
-  if( $(window).scrollTop() > 155) {
-    document.querySelector('header').classList.add('fixed-top')
-    document.querySelector('#carousel-mcs').style.marginTop = '7rem'
+  if(document.body.clientWidth > 990) {
+    if( $(window).scrollTop() > 400) {
+      document.querySelector('#fixed-header').style.display = 'flex'
+    }else {
+      document.querySelector('#fixed-header').style.display = 'none'
+    }
   }else {
-    document.querySelector('header').classList.remove('fixed-top')
-    document.querySelector('#carousel-mcs').style.marginTop = 'unset'
+    if( $(window).scrollTop() > 600) {
+      document.querySelector('#fixed-header').style.display = 'flex'
+    }else {
+      document.querySelector('#fixed-header').style.display = 'none'
+    }
   }
 })
