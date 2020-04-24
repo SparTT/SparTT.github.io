@@ -53,13 +53,6 @@
       }
 
       @media screen and (max-width: 990px) {
-        header a, .icons-nav {
-          text-align: right;
-        }
-        a.navbar-brand {
-          margin-left: auto;
-          margin-right: auto;
-        }
         /*
         header ul {
           margin-right: 2ch;
@@ -85,46 +78,48 @@
           width: 100%;
           height: 100%;
       }
-
+      .desktop-banner-rodape img {
+          width: 24%;
+          height: 275px;
+      }
       
     </style>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/mcs/geral.css">
+    <link rel="stylesheet" href="https://spartt.github.io/mcs/geral.css">
     <title>Home</title>
   </head>
   <body>
       <header class="bg-light border-bottom border-dark">
-        
-        <div id="topbar" class="navbar" style="background-color: #faa633;padding: 0ch;">
-          <ul class="navbar-nav navbar-expand mx-auto py-1" style="font-size: 12px;">
-            <li class="nav-item mx-2">
-              <a class="text-light nav-link" href="/mcs/atendimento" tabindex="-1">ATENDIMENTO</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="text-light nav-link" href="https://www.minhacasasolar.com.br/integradores">INTEGRADORES</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="text-light nav-link" href="http://blog.minhacasasolar.com.br/">BLOG</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="text-light nav-link" href="https://www.minhacasasolar.com.br/simulador-solar">SIMULADOR SOLAR</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="text-light nav-link" href="tel:(31) 3479-1400"> <i class="fa fa-phone mr-2"></i> (31) 3479-1400 </a>
-            </li>
-          </ul>
-          <div class="icons-nav ml-auto mr-3">
-            <a href="/carrinho"><i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i></a> 
+
+        <div style="background-color: #faa633;padding: 0ch;">
+          <div id="topbar" class="navbar container">
+            <ul class="navbar-nav navbar-expand mx-auto py-0" style="font-size: 13px;">
+              <li class="nav-item mx-2">
+                <a class="text-light nav-link" href="/mcs/atendimento" tabindex="-1">ATENDIMENTO</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a class="text-light nav-link" href="https://www.minhacasasolar.com.br/integradores">INTEGRADORES</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a class="text-light nav-link" href="http://blog.minhacasasolar.com.br/">BLOG</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a class="text-light nav-link" href="https://www.minhacasasolar.com.br/simulador-solar">SIMULADOR SOLAR</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a class="text-light nav-link" href="tel:(31) 3479-1400"> <i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> (31) 3479-1400 </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div class="mt-4 mb-2">
+        <div class="container mb-2">
           <div class="row" style="align-items: center;">
-            <div class="col-auto ml-md-3 col-lg-auto">
-              <a class="ml-2" href="/mcs/" ><img src="https://cdn.bitrix24.com/b11768441/bitrix24/dc3/dc39c1c572ef439350627e8e79f7ff0d/logo_VZNb9pU4.png"></a>
+            <div class="col-auto col-lg-auto">
+              <a href="/mcs/" ><img src="https://cdn.bitrix24.com/b11768441/bitrix24/dc3/dc39c1c572ef439350627e8e79f7ff0d/logo_VZNb9pU4.png"></a>
             </div>
             <!--Mobile -->
             <div class="row icons-nav col-7 col-md-9 col-lg-auto mt-3 mb-4">
@@ -134,14 +129,14 @@
               <div class="hide-desktop col-auto px-2">
                 <a href="/carrinho"><i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i></a> 
               </div>
-              <div class="hide-desktop col-auto ml-4 px-1">
+              <div class="hide-desktop col-auto ml-2 px-1">
                 <a class="" type="button" data-toggle="collapse" data-target="#header-navbar" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
                   <i class="fa fa-bars text-dark fa-2x" aria-hidden="true"></i>
                 </a>
               </div> 
             </div>
             
-            <div class="col-md-12 col-lg-6 mt-2">
+            <div class="col-12 col-md-12 col-lg-6 mt-2">
               <form class="form-row ml-2">
                 <div class="col-8 col-md-10">
                 <input class="form-control border border-dark" type="search" placeholder="Faça uma pesquisa" aria-label="Search">
@@ -152,7 +147,7 @@
               </form>
             </div>
             <!-- Desktop -->
-            <div class="row hide-mobile col-lg-auto mt-3">
+            <div class="row hide-mobile col-lg-auto mt-3 ml-2">
               <div class="hide-mobile col-auto text-right">
                 <p>Olá! Seja bem vindo
                   <br/>
@@ -163,7 +158,11 @@
                 <a href="/minha-conta"><i class="fa fa-user-o text-dark fa-2x" aria-hidden="true"></i></a>
               </div>
             </div>
-
+            <div class="hide-mobile col-lg-auto">
+              <div class="px-2">
+                <a href="/carrinho"><i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i></a> 
+              </div>
+            </div>
           </div>
         </div>
         
@@ -306,12 +305,14 @@
           <div id="carousel-mcs" class="carousel slide hide-mobile" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <a href="#"><img draggable="false" src="https://minhacasasolar.fbitsstatic.net/img/b/ee14e3be-32b5-4f28-b2fe-49406dd2944e.jpg" class="d-block w-100" alt="..."></a>
+                <a href="#">
+                  <img draggable="false" src="https://minhacasasolar.fbitsstatic.net/img/b/ee14e3be-32b5-4f28-b2fe-49406dd2944e.jpg" class="d-block w-100" alt="...">
+                </a>
               </div>
-              <div class="carousel-item">
+              <div class="carousel-item p-3">
                 <a href="#"><img draggable="false" src="https://minhacasasolar.fbitsstatic.net/img/b/898df0cc-a757-47f0-9533-a125991ed48d.jpg" class="d-block w-100" alt="..."></a>
               </div>
-              <div class="carousel-item">
+              <div class="carousel-item p-3">
                 <a href="#"><img draggable="false" src="https://minhacasasolar.fbitsstatic.net/img/b/3c826c30-acd9-4315-b94c-24bf27838f92.jpg" class="d-block w-100" alt="..."></a>
               </div>
             </div>
@@ -324,9 +325,10 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-    
+          <!-- https://recursos.minhacasasolar.com.br/MediaCenter/calculadora-rodape-banner.jpg -->
           <div class="fbits-banner-rodape mt-3 text-center">
-            <a class="desktop-banner-rodape" href="http://bit.ly/calculadora-solar-minha-casa-solar"> <img src="https://minhacasasolar.fbitsstatic.net/img/b/519bc179-fdd3-4e7a-931f-2888f184673e.jpg" alt=""></a>
+            <a class="desktop-banner-rodape" href="http://bit.ly/calculadora-solar-minha-casa-solar"> <img src="https://recursos.minhacasasolar.com.br/MediaCenter/calculadora-rodape-banner.jpg" alt=""></a>
+            <a class="desktop-banner-rodape" href="#"> <img draggable="false" src="https://recursos.minhacasasolar.com.br/MediaCenter/calculadora-rodape-banner-2.jpg" alt=""> </a>
             <a class="desktop-banner-rodape" href="https://www.minhacasasolar.com.br/kit-energia-solar"> <img src="https://minhacasasolar.fbitsstatic.net/img/b/13e41cb9-6b9b-4a5d-ac1b-044be914533e.jpg" alt=""></a>
             <a class="desktop-banner-rodape" href="http://blog.minhacasasolar.com.br/o-que-e-celula-fotovoltaica/"> <img src="https://minhacasasolar.fbitsstatic.net/img/b/3d72fa68-e946-497e-beb7-c936ee3e4c1d.jpg" alt=""></a>
 
@@ -382,128 +384,129 @@
 
         </main>
 
-<footer class="bg-light mt-4 page-footer font-small unique-color-dark">
 
-  <div class="border-bottom border-white" style="background-color: #faa633;">
-    <div class="container p-4">
-      <h3 class="text-white mb-4 text-left">RECEBA AS MELHORES NOVIDADES E OFERTAS</h3>
-        <div class="mb-4 w-100">
-          <form class="justify-content-center">
-            <div class="row">
-              <div class="form-group col-sm-12 col-md-4 col-lg-3">
-                <input type="text" class="form-control" type="text" placeholder="Nome" name="FNAME" aria-label="Nome">
-              </div>
-              <div class="form-group col-md-4 col-sm-12 col-lg-3">
-                <input type="text" class="form-control" name="EMAIL" placeholder="Email" aria-label="Email">
-              </div>
-              <div class="form-group col-sm-12 col-md-4 col-lg-3">
-                <input type="tel" class="form-control" name="PHONE" placeholder="WhatsApp" aria-label="Telefone">
-              </div>
-              <div class="form-group col-sm-12 col-lg-2 text-center">
-                <button class="btn border border-white text-light" type="button">Enviar <i class="fa fa-envelope-o" aria-hidden="true"></i></button>
+        <footer class="bg-light mt-4 page-footer font-small unique-color-dark">
+
+          <div class="border-bottom border-white" style="background-color: #faa633;">
+            <div class="container p-4">
+              <h3 class="text-white mb-4 text-left">RECEBA AS MELHORES NOVIDADES E OFERTAS</h3>
+                <div class="mb-4 w-100">
+                  <form class="justify-content-center">
+                    <div class="row">
+                      <div class="form-group col-sm-12 col-md-4 col-lg-3">
+                        <input type="text" class="form-control" type="text" placeholder="Nome" name="FNAME" aria-label="Nome">
+                      </div>
+                      <div class="form-group col-md-4 col-sm-12 col-lg-3">
+                        <input type="text" class="form-control" name="EMAIL" placeholder="Email" aria-label="Email">
+                      </div>
+                      <div class="form-group col-sm-12 col-md-4 col-lg-3">
+                        <input type="tel" class="form-control" name="PHONE" placeholder="WhatsApp" aria-label="Telefone">
+                      </div>
+                      <div class="form-group col-sm-12 col-lg-2 text-center">
+                        <button class="btn border border-white text-light" type="button">Enviar <i class="fa fa-envelope-o" aria-hidden="true"></i></button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+            </div>
+          </div>
+        
+          <div style="background-color: #faa633">
+              <div class="container">
+                <div class="py-4 d-flex align-items-center">
+        
+                  <h6 class="mb-0 text-light mr-4">Siga nos!</h6>
+                  <!-- Facebook -->
+                  <a href="https://www.facebook.com/minhacasasolar">
+                    <i class="fa fa-facebook text-white mr-4" aria-hidden="true"></i>
+                  </a>
+                  <!--Linkedin -->
+                  <a href="https://www.linkedin.com/company/minha-casa-solar">
+                    <i class="fa fa-linkedin text-white mr-4" aria-hidden="true"></i>
+                  </a>
+                  <!--Instagram-->
+                  <a href="https://www.instagram.com/minhacasasolar/">
+                    <i class="fa fa-instagram text-white mr-4" aria-hidden="true"></i>
+                  </a>
+                  </div>
+                </div>
+          
               </div>
             </div>
-          </form>
-        </div>
-    </div>
-  </div>
-
-  <div style="background-color: #faa633">
-      <div class="container">
-        <div class="py-4 d-flex align-items-center">
-
-          <h6 class="mb-0 text-light mr-4">Siga nos!</h6>
-          <!-- Facebook -->
-          <a href="https://www.facebook.com/minhacasasolar">
-            <i class="fa fa-facebook text-white mr-4" aria-hidden="true"></i>
-          </a>
-          <!--Linkedin -->
-          <a href="https://www.linkedin.com/company/minha-casa-solar">
-            <i class="fa fa-linkedin text-white mr-4" aria-hidden="true"></i>
-          </a>
-          <!--Instagram-->
-          <a href="https://www.instagram.com/minhacasasolar/">
-            <i class="fa fa-instagram text-white mr-4" aria-hidden="true"></i>
-          </a>
+        
+          <div style="background: #1d1d21;">
+          <div class="container text-center text-md-left p-4">
+        
+            <div class="row text-light">
+        
+              <div class="col-md-3 col-lg-4 col-xl-4 mx-auto mb-4">
+        
+                <h6 class="text-uppercase font-weight-bold">Minha Casa Solar </h6>
+                <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto">
+                <p>Horário de atendimento: Segunda-feira a sexta-feira: 8h às 18h</p>
+                <p>Retirada de mercadorias: Segunda a sexta-feira: 8h às 17h</p>
+              </div>
+        
+              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+        
+                <h6 class="text-uppercase font-weight-bold">Atendimento</h6>
+                <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto">
+                <p>
+                  <a href="/mcs/atendimento">Contato</a>
+                </p>
+                <p>
+                  <a href="/mcs/trocas-e-devolucoes">Trocas e devoluções</a>
+                </p>
+                <p>
+                  <a href="#!">Sobre entrega</a>
+                </p>
+                <p>
+                  <a href="/mcs/integradores">Integradores</a>
+                </p>
+        
+              </div>
+        
+              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+        
+                <h6 class="text-uppercase font-weight-bold">Institucional</h6>
+                <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto">
+                <p>
+                  <a href="#">Quem Somos</a>
+                </p>
+                <p>
+                  <a href="#!">Política de Privacidade</a>
+                </p>
+                <p>
+                  <a href="#!">Razão Social</a>
+                </p>
+        
+              </div>
+        
+              <div class="col-md-3 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
+                <h6 class="text-uppercase font-weight-bold">Informações</h6>
+                <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto">
+                <p class="text-light">
+                  <i class="fa fa-home mr-2" aria-hidden="true"></i> Av. Wilson Tavares Ribeiro, 800
+                </p>
+                <p>
+                  <a class="text-light" href="tel:(31) 3479-1400"> <i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> (31) 3479-1400 </a>
+                </p>
+                <p class="text-light">
+                  <i class="fa fa-envelope mr-2" aria-hidden="true"></i>contato@minhacasasolar.com.br
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-  
-      </div>
-    </div>
-
-  <div style="background: #1d1d21;">
-  <div class="container text-center text-md-left p-4">
-
-    <div class="row text-light">
-
-      <div class="col-md-3 col-lg-4 col-xl-4 mx-auto mb-4">
-
-        <h6 class="text-uppercase font-weight-bold">Minha Casa Solar </h6>
-        <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto">
-        <p>Horário de atendimento: Segunda-feira a sexta-feira: 8h às 18h</p>
-        <p>Retirada de mercadorias: Segunda a sexta-feira: 8h às 17h</p>
-      </div>
-
-      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-
-        <h6 class="text-uppercase font-weight-bold">Atendimento</h6>
-        <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto">
-        <p>
-          <a href="/mcs/atendimento">Contato</a>
-        </p>
-        <p>
-          <a href="/mcs/trocas-e-devolucoes">Trocas e devoluções</a>
-        </p>
-        <p>
-          <a href="#!">Sobre entrega</a>
-        </p>
-        <p>
-          <a href="/mcs/integradores">Integradores</a>
-        </p>
-
-      </div>
-
-      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-
-        <h6 class="text-uppercase font-weight-bold">Institucional</h6>
-        <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto">
-        <p>
-          <a href="#">Quem Somos</a>
-        </p>
-        <p>
-          <a href="#!">Política de Privacidade</a>
-        </p>
-        <p>
-          <a href="#!">Razão Social</a>
-        </p>
-
-      </div>
-
-      <div class="col-md-3 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
-        <h6 class="text-uppercase font-weight-bold">Informações</h6>
-        <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto">
-        <p class="text-light">
-          <i class="fa fa-home mr-2" aria-hidden="true"></i> Av. Wilson Tavares Ribeiro, 800
-        </p>
-        <p>
-          <a class="text-light" href="tel:(31) 3479-1400"> <i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> (31) 3479-1400 </a>
-        </p>
-        <p class="text-light">
-          <i class="fa fa-envelope mr-2" aria-hidden="true"></i>contato@minhacasasolar.com.br
-        </p>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <div class="footer-copyright text-center py-2" style="box-shadow: 0px 0px 8px 1px black; font-size: 13px; background-color: #020202;">
-    <span class="text-light"> MINHA CASA SOLAR - L&F Comércio, Projetos e Consultoria LTDA.</span>
-    <span class="text-light">CNPJ Matriz: 11.945.569/0001-46</span>
-    <span class="text-light">Inscrição Estadual: 001597030.00-55</span>
-  </div>
-
-</footer>
-
+          </div>
+        
+          <div class="footer-copyright text-center py-2" style="box-shadow: 0px 0px 8px 1px black; font-size: 13px; background-color: #020202;">
+            <span class="text-light"> MINHA CASA SOLAR - L&F Comércio, Projetos e Consultoria LTDA.</span>
+            <span class="text-light">CNPJ Matriz: 11.945.569/0001-46</span>
+            <span class="text-light">Inscrição Estadual: 001597030.00-55</span>
+          </div>
+        
+        </footer>
+        
           <script src="/mcs/geral.js"></script>
           <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
