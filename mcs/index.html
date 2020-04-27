@@ -12,33 +12,33 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-          }
+        }
     
-          @media (min-width: 768px) {
+        @media (min-width: 768px) {
             .bd-placeholder-img-lg {
               font-size: 3.5rem;
             }
-          }
-          @media screen and (max-width: 768px) {
+        }
+        @media screen and (max-width: 768px) {
             #topbar {
               display: none;
             }
-          }
+        }
     
-          a.dropdown-item:hover {
+        a.dropdown-item:hover {
             color: white;
             background: #343a40;
-          }
-          .kits-text {
+        }
+        .kits-text {
             font-weight: 300;
-          }
+        }
     
-          @media screen and (max-width: 959px) {
+        @media screen and (max-width: 959px) {
             .kits-text { 
               font-size: 0.8rem;
             }
-          }
-          @media screen and (min-width: 990px) {
+        }
+         @media screen and (min-width: 990px) {
             .kits-text {
               font-size: 1.2rem;
             }
@@ -48,12 +48,12 @@
             .fbits-banner-rodape .mobile-banner-rodape {
               display: none;
             }
-          }
-          #carousel-marcas .carousel-inner {
+        }
+        #carousel-marcas .carousel-inner {
               text-align: center;
-          }
+        }
     
-          @media screen and (max-width: 990px) {
+        @media screen and (max-width: 990px) {
             /*
             header ul {
               margin-right: 2ch;
@@ -62,12 +62,12 @@
             .fbits-banner-rodape .desktop-banner-rodape {
               display: none;
             }
-          }  
+        }  
     
-          .fbits-banner-rodape img:hover {
+        .fbits-banner-rodape img:hover {
             filter: brightness(0.6);
             transition: 0.3s all ease;
-          }
+        }
           /*
           @media screen and (max-width: 1250px) {
             ul.navbar-nav li a {
@@ -75,17 +75,139 @@
             }
           }
           */
-          .mobile-banner-rodape img {
+        .mobile-banner-rodape img {
               width: 100%;
               height: 100%;
-          }
-          .desktop-banner-rodape img {
+        }
+        .desktop-banner-rodape img {
               width: 24%;
               height: 235px;
-          }
-          .help-icons a img {
+        }
+        .help-icons a img {
               transform: scale(0.8);
-          }
+        }
+        #whatsapp-follow {
+            position: fixed;
+            top: 18%;
+            right: -1ch;
+            background: #44bb6e;
+            padding: 1ch;
+            z-index: 99999;
+            border-radius: 1.5ch;
+        }
+
+      /*Carroseel Melhores Ofertas DESKTOP*/
+      .selos-produtos .selos  {
+            transform: scale(0.5);
+            display: grid;
+            z-index: 999;
+            position: relative;
+            margin-top: -3.5ch;
+        }
+        .parte-um {
+            height: 215px;
+        }
+        .qtd-promocao {
+            background: url(https://recursos.minhacasasolar.com.br/i/seloPromo.png) no-repeat scroll 0 0;
+            color: white;
+            text-align: center;
+            font-size: 12px;
+            width: 75px;
+            height: 20px;
+            line-height: 16px;
+        }
+        .etiqueta-promocao {
+            background: url(https://recursos.minhacasasolar.com.br/i/etiquetas/4.png) no-repeat scroll 0 0;
+            color: white;
+            text-align: center;
+            font-size: 11px;
+            width: 80px;
+            height: 20px;
+            line-height: 16px;
+        }
+        .spot {
+            display: grid;
+            width: 28ch;
+            border: 2px solid transparent;
+        }
+        .spot:hover {
+            border-color: orange;
+        }
+        .precoDe {
+            font-size: 14px;
+            color: gray;
+            text-decoration: line-through;
+        }
+
+        .precoPor span.fbits-moeda, .precoPor span.fbits-spot-boleto-valor {
+            font-size: 23px;
+            font-weight: bold;
+            color: seagreen;
+        }
+        .best-offerings {
+            display: flex;
+        }
+        .selos-produtos {
+            position: absolute;
+        }
+        .precoPor span.fbits-spot-boleto-valor:after {
+            content: ' à vista no boleto';
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        .precoPor span.fbits-spot-boleto-valor {
+            line-height: 0ch;
+        }
+
+        .fbits-spot-preco-cartao .fbits-moeda, .fbits-spot-preco-cartao .fbits-valor-cartao {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .fbits-spot-preco-cartao .fbits-moeda:before {
+            content: 'ou ';
+            font-size: 13px;
+            font-weight: normal
+        }
+
+        .fbits-spot-preco-cartao .fbits-valor-cartao:after {
+            content: ' no cartão';
+            font-size: 13px;
+            font-weight: normal;
+        }
+
+        .precoParcela .fbits-quantidadeParcelas:before {
+            content: 'ou ';
+            font-weight: normal;
+        }
+
+        .precoParcela .fbits-quantidadeParcelas, .fbits-parcela {
+            font-size: 13px;
+        }
+        .spotTitle {
+            font-size: 15px;
+        }
+        .comprar {
+            z-index: 999;
+        }
+
+        @media screen and (max-width: 990px) {
+            .botoesSpot a {
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 1ch;
+                color: white;
+            }
+            #whatsapp-follow {
+                top: 86%;
+                right: 2ch;
+                border-radius: 65%;
+                padding: 1.2ch;
+            }
+        }
+        
     </style>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -96,6 +218,12 @@
 </head>
 
 <body>
+
+    <!--WhatsApp -->
+    <div id="whatsapp-follow"> 
+        <a target="_blank" href="https://api.whatsapp.com/send?phone=553134791400&amp;text=Ol%C3%A1,%20Minha%20Casa%20Solar!%20Vi%20este%20WhatsApp%20na%20loja%20virtual!%20Podemos%20conversar?%20"> <i style="font-size: 2.3em;" class="fa fa-whatsapp text-white" aria-hidden="true"></i> </a>
+      </div>
+
     <header class="bg-light border-bottom border-dark">
 
         <div style="background-color: #faa633; padding: 0ch;">
@@ -114,7 +242,7 @@
                         <a class="text-light nav-link" href="https://www.minhacasasolar.com.br/simulador-solar">SIMULADOR SOLAR</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="text-light nav-link" href="tel:(31) 3479-1400"> <i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> (31) 3479-1400 </a>
+                        <a class="text-light nav-link" href="tel:(31) 3479-1400"> <i class="fa fa-phone" aria-hidden="true"></i> (31) 3479-1400 </a>
                     </li>
                 </ul>
             </div>
@@ -341,6 +469,178 @@
                 <a class="mobile-banner-rodape" href="http://bit.ly/calculadora-solar-minha-casa-solar"><img src="https://minhacasasolar.fbitsstatic.net/img/b/ed964953-f0ad-4b51-acd1-8b5fc80c1507.jpg" alt=""></a>
             </div>
 
+        <!--Carrossel Melhores Ofertas-->
+        <h3 class="mt-4 text-center">MELHORES OFERTAS</h3>
+        <div class="best-offerings justify-content-center">
+            <div class="spot p-2 mt-2">
+            <a class="text-dark" style="text-decoration: none;" href="#">
+                <div class="parte-um">
+                    <div class="selos-produtos">
+                        <div class="etiquetas mb-3">
+                            <div class="etiqueta-promocao">
+                                PROMOÇÃO
+                            </div>
+                            <div class="qtd-promocao">
+                                13% OFF
+                            </div>
+                        </div>
+                        <img class="selos" src="https://recursos.minhacasasolar.com.br/i/selos/88/tier1_v5.jpg">
+                        <img class="selos" src="https://recursos.minhacasasolar.com.br/i/selos/69/INMETRO.jpg">
+                        <img class="selos" src="https://recursos.minhacasasolar.com.br/i/selos/70/PROCEL.jpg">
+                        <img class="selos" src="https://recursos.minhacasasolar.com.br/i/selos/83/garantia-12-anos.jpg">
+                    </div>
+                    <div class="imgProd">
+                        <img src="https://minhacasasolar.fbitsstatic.net/img/p/painel-solar-150w-risen-solar-policristalino-79224/265563.jpg?w=200&h=200&v=no-change" alt="">
+                    </div>
+                </div>
+                <div class="parte-dois">
+                    <span class="spotTitle">Painel Solar 150W Risen Solar - Policristalino</span>
+                    <div class="spotPreco">
+                        <div class="precoDe">
+                            <span class="fbits-moeda">R$</span>
+                            <span class="fbits-valor">399,00</span>
+                        </div>
+                        <div class="precoPor">
+
+                            <span class="fbits-moeda">R$</span>
+                            <span class="fbits-spot-boleto-valor">324,57</span>
+                        </div>
+                        <div class="fbits-spot-preco-cartao">
+                            <span class="fbits-moeda">R$</span>
+                            <span class="fbits-valor-cartao">349,00</span>
+                        </div>
+                        <div class="precoParcela">
+                            <span class="fbits-quantidadeParcelas">12x de</span>
+                            <span class="fbits-parcela">R$ 33,00</span>
+                        </div>
+                    </div>
+                    <div class="botoesSpot hide-desktop">
+                        <a href="/produto/painel-solar-150w-risen-solar-policristalino-79224" class="btn btn-success comprar">Comprar</a>
+    
+                        <a style="background: orange" id="spot-comprar-79224-265563" class="btn adicionar text-white" data-abrirmodal="False" data-produtoid="79224" data-produtovarianteid="265563" onclick="return trataModalProduto($(this))">Adicionar ao Carrinho<i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                        <label id="mensagem-erro-spot" class="hide error erro"></label>
+                    </div>
+                </div>
+            </a>
+            </div>
+            <div class="spot p-2 mt-2 hide-mobile">
+                <a class="text-dark" style="text-decoration: none;" href="#">
+                <div class="parte-um">
+                    <div class="selos-produtos">
+                        <div class="etiquetas mb-3">
+                            <div class="etiqueta-promocao">
+                                PROMOÇÃO
+                            </div>
+                            <div class="qtd-promocao">
+                                0% OFF
+                            </div>
+                        </div>
+                        <img class="selos" src="https://recursos.minhacasasolar.com.br/i/selos/69/INMETRO.jpg">
+                        <img class="selos" src="https://recursos.minhacasasolar.com.br/i/selos/70/PROCEL.jpg">
+                    </div>
+                    <div class="imgProd">
+                        <img src="https://minhacasasolar.fbitsstatic.net/img/p/painel-solar-275w-dah-solar-policristalino-dhp60-275w-79479/265827.jpg?w=200&h=200&v=no-change" alt="">
+                    </div>
+                </div>
+                <div class="parte-dois">
+                    <span class="spotTitle">Painel Solar 275W Dah Solar Policristalino - DHP60-275W</span>
+                    <div class="spotPreco">
+                        <div class="precoDe">
+                            <span class="fbits-moeda">R$</span>
+                            <span class="fbits-valor">532,22</span>
+                        </div>
+                        <div class="precoPor">
+
+                            <span class="fbits-moeda">R$</span>
+                            <span class="fbits-spot-boleto-valor">494,76</span>
+                        </div>
+                        <div class="fbits-spot-preco-cartao">
+                            <span class="fbits-moeda">R$</span>
+                            <span class="fbits-valor-cartao">532,00</span>
+                        </div>
+                        <div class="precoParcela">
+                            <span class="fbits-quantidadeParcelas">12x de</span>
+                            <span class="fbits-parcela">R$ 50,31</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            </div>
+            <div class="spot p-2 mt-2 hide-mobile">
+                <a class="text-dark" style="text-decoration: none;" href="#">
+                <div class="parte-um">
+                    <div class="selos-produtos">
+                        <div class="etiquetas mb-3">
+                            <div class="etiqueta-promocao">
+                                PROMOÇÃO
+                            </div>
+                            <div class="qtd-promocao">
+                                29% OFF
+                            </div>
+                        </div>
+                        <img class="selos" src="https://recursos.minhacasasolar.com.br/i/selos/74/GARANTIA_1.jpg">
+                    </div>
+                    <div class="imgProd">
+                        <img src="https://minhacasasolar.fbitsstatic.net/img/p/medidor-remoto-digital-para-controladores-sun21-mcs-rm-6-79441/265789.jpg?w=200&h=200&v=no-change" alt="">
+                    </div>
+                </div>
+                <div class="parte-dois">
+                    <span class="spotTitle">Medidor Remoto Digital para Controladores Sun21 - MCS-RM-6</span>
+                    <div class="spotPreco">
+                        <div class="precoDe">
+                            <span class="fbits-moeda">R$</span>
+                            <span class="fbits-valor">139,00</span>
+                        </div>
+                        <div class="precoPor">
+
+                            <span class="fbits-moeda">R$</span>
+                            <span class="fbits-spot-boleto-valor">92,07</span>
+                        </div>
+                        <div class="fbits-spot-preco-cartao">
+                            <span class="fbits-moeda">R$</span>
+                            <span class="fbits-valor-cartao">99,00</span>
+                        </div>
+                        <div class="precoParcela">
+                            <span class="fbits-quantidadeParcelas">12x de</span>
+                            <span class="fbits-parcela">R$ 9,36</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            </div>
+            <div class="spot p-2 mt-2 hide-mobile">
+                <a class="text-dark" style="text-decoration: none;" href="#">
+                <div class="parte-um">
+                    <div class="selos-produtos">
+                    </div>
+                    <div class="imgProd">
+                        <img src="https://minhacasasolar.fbitsstatic.net/img/p/kit-de-emenda-p-trilho-minha-casa-solar-ck-ft-ska-78890/265225.jpg?w=200&h=200&v=no-change" alt="">
+                    </div>
+                </div>
+                <div class="parte-dois">
+                    <span class="spotTitle">Kit de Emenda p/ Trilho Minha Casa Solar - CK-FT-SKA</span>
+                    <div class="spotPreco">
+                        <div class="precoPor">
+
+                            <span class="fbits-moeda">R$</span>
+                            <span class="fbits-spot-boleto-valor">27,81</span>
+                        </div>
+                        <div class="fbits-spot-preco-cartao">
+                            <span class="fbits-moeda">R$</span>
+                            <span class="fbits-valor-cartao">29,90</span>
+                        </div>
+                        <div class="precoParcela">
+                            <span class="fbits-quantidadeParcelas">5x de</span>
+                            <span class="fbits-parcela">R$ 5,98</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            </div>
+        </div>
+
+
+
             <div class="content">
                 <h4 class="mt-4">KITS PARA USO ISOLADO DA REDE (OFF-GRID) </h4>
                 <div class="row" style="align-items: center;">
@@ -488,7 +788,7 @@
                             <i class="fa fa-home mr-2" aria-hidden="true"></i> Av. Wilson Tavares Ribeiro, 800
                         </p>
                         <p>
-                            <a class="text-light" href="tel:(31) 3479-1400"> <i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> (31) 3479-1400 </a>
+                            <a class="text-light" href="tel:(31) 3479-1400"> <i class="fa fa-phone" aria-hidden="true"></i> (31) 3479-1400 </a>
                         </p>
                         <p class="text-light">
                             <a href="mailto:contato@minhacasasolar.com.br"><i class="fa fa-envelope mr-2" aria-hidden="true"></i>contato@minhacasasolar.com.br </a>
