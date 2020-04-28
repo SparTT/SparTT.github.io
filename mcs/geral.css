@@ -76,3 +76,23 @@
             min-width:2em;
             font-weight:bold;
         }
+@media screen and (max-width: 990px) {
+
+    #whatsapp-follow {
+        top: 86%;
+        right: 2ch;
+        border-radius: 65%;
+        padding: 1.2ch;
+    }
+
+}
+
+#whatsapp-follow {
+    position: fixed;
+    top: 18%;
+    right: -1ch;
+    background: #44bb6e;
+    padding: 1ch;
+    z-index: 99999;
+    border-radius: 1.5ch;
+}
