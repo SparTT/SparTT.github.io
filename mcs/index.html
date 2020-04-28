@@ -86,15 +86,6 @@
         .help-icons a img {
               transform: scale(0.8);
         }
-        #whatsapp-follow {
-            position: fixed;
-            top: 18%;
-            right: -1ch;
-            background: #44bb6e;
-            padding: 1ch;
-            z-index: 99999;
-            border-radius: 1.5ch;
-        }
 
       /*Carroseel Melhores Ofertas DESKTOP*/
       .selos-produtos .selos  {
@@ -200,12 +191,6 @@
                 margin-top: 1ch;
                 color: white;
             }
-            #whatsapp-follow {
-                top: 86%;
-                right: 2ch;
-                border-radius: 65%;
-                padding: 1.2ch;
-            }
         }
         
     </style>
@@ -259,7 +244,9 @@
                         <a href="/minha-conta"><i class="fa fa-user-o text-dark fa-2x" aria-hidden="true"></i></a>
                     </div>
                     <div class="hide-desktop col-auto px-2">
-                        <a href="/carrinho"><i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i></a>
+                        <div class="px-2 fa-stack has-badge" data-count="8">
+                            <a href="/carrinho"><i class="fa fa-shopping-cart fa-stack-2x fa-inverse text-dark" aria-hidden="true"></i></a>
+                        </div>
                     </div>
                     <div class="hide-desktop col-auto ml-2 px-1">
                         <a class="" type="button" data-toggle="collapse" data-target="#header-navbar" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
@@ -414,11 +401,11 @@
                 </form>
             </div>
 
-            <div class="icons-nav mt-2 ml-lg-3">
-                <a href="/minha-conta" style="font-size: 13px;"><span class="icon-nav-text mr-2 text-dark">MINHA CONTA</span><i class="fa fa-user-o text-dark fa-2x" aria-hidden="true"></i></a>
+            <div class="icons-nav ml-lg-3">
+                <a href="/minha-conta" style="font-size: 14px;"><span class="icon-nav-text mr-2 text-dark"></span><i class="fa fa-user-o text-dark fa-2x" aria-hidden="true"></i></a>
             </div>
-            <div class="icons-nav mt-2 ml-lg-2">
-                <a href="/carrinho" style="font-size: 13px;" class="fa-stack has-badge" data-count="8"><span class="icon-nav-text mr-2 text-dark">CARRINHO</span><i class="fa fa-shopping-cart text-dark fa-2x fa-stack-2x fa-inverse" aria-hidden="true"></i></a>
+            <div class="icons-nav ml-lg-2">
+                <a href="/carrinho" style="font-size: 14px;" class="fa-stack has-badge" data-count="8"><i class="fa fa-shopping-cart text-dark fa-2x fa-stack-2x fa-inverse" aria-hidden="true"></i></a>
             </div>
 
         </div>
@@ -806,10 +793,11 @@
 
     </footer>
 
-    <script src="/mcs/geral.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="/mcs/geral.js"></script>
 
 </body>
 
