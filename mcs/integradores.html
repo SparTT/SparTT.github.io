@@ -24,8 +24,7 @@
    <div id="whatsapp-follow"> 
     <a target="_blank" href="https://api.whatsapp.com/send?phone=553134791400&amp;text=Ol%C3%A1,%20Minha%20Casa%20Solar!%20Vi%20este%20WhatsApp%20na%20loja%20virtual!%20Podemos%20conversar?%20"> <i style="font-size: 2.3em;" class="fa fa-whatsapp text-white" aria-hidden="true"></i> </a>
   </div>
-
-<header class="bg-light border-bottom border-dark">
+  <header class="bg-light border-bottom border-dark">
 
     <div style="background-color: #faa633; padding: 0ch;">
         <div id="topbar" class="navbar container py-0">
@@ -60,7 +59,9 @@
                     <a href="/minha-conta"><i class="fa fa-user-o text-dark fa-2x" aria-hidden="true"></i></a>
                 </div>
                 <div class="hide-desktop col-auto px-2">
-                    <a href="/carrinho"><i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i></a>
+                    <div class="px-2 fa-stack has-badge" data-count="8">
+                        <a href="/carrinho"><i class="fa fa-shopping-cart fa-stack-2x fa-inverse text-dark" aria-hidden="true"></i></a>
+                    </div>
                 </div>
                 <div class="hide-desktop col-auto ml-2 px-1">
                     <a class="" type="button" data-toggle="collapse" data-target="#header-navbar" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
@@ -171,8 +172,8 @@
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
                 <a class="text-dark nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          TODAS CATEGORIAS
-        </a>
+                    TODAS CATEGORIAS
+                </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="https://www.minhacasasolar.com.br/acessorios-energia-solar">Acessórios</a>
                     <a class="dropdown-item" href="https://www.minhacasasolar.com.br/baterias">Baterias</a>
@@ -188,10 +189,10 @@
                     <a class="dropdown-item" href="https://www.minhacasasolar.com.br/cursos-energia-solar">Cursos</a>
                 </div>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown hide-mobile">
                 <a class="text-dark nav-link dropdown-toggle" href="#" id="kitDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          KIT SOLAR
-        </a>
+                    KIT SOLAR
+                </a>
                 <div class="dropdown-menu" aria-labelledby="kitDropdown">
                     <a class="dropdown-item" href="https://www.minhacasasolar.com.br/grupolistacompra/kit-gerador-solar">Todos os Kits</a>
                     <a class="dropdown-item" href="https://www.minhacasasolar.com.br/grupolistacompra/gerador-solar-para-conexao-a-rede-publica-grid-tie">Kit Grid-Tie</a>
@@ -200,7 +201,7 @@
                     <a class="dropdown-item" href="https://www.minhacasasolar.com.br/kit-energia-solar">Kit Outlet</a>
                 </div>
             </li>
-            <li class="nav-item">
+            <li class="nav-item hide-mobile">
                 <a class="text-dark nav-link" href="/mcs/painel-solar" tabindex="-1">PAINEL SOLAR</a>
             </li>
         </ul>
@@ -215,11 +216,11 @@
             </form>
         </div>
 
-        <div class="icons-nav mt-2 ml-lg-3">
-            <a href="/minha-conta" style="font-size: 13px;"><span class="icon-nav-text mr-2 text-dark">MINHA CONTA</span><i class="fa fa-user-o text-dark fa-2x" aria-hidden="true"></i></a>
+        <div class="icons-nav ml-lg-3">
+            <a href="/minha-conta" style="font-size: 14px;"><span class="icon-nav-text mr-2 text-dark"></span><i class="fa fa-user-o text-dark fa-2x" aria-hidden="true"></i></a>
         </div>
-        <div class="icons-nav mt-2 ml-lg-2">
-            <a href="/carrinho" style="font-size: 13px;" class="fa-stack has-badge" data-count="8"><span class="icon-nav-text mr-2 text-dark">CARRINHO</span><i class="fa fa-shopping-cart text-dark fa-2x fa-stack-2x fa-inverse" aria-hidden="true"></i></a>
+        <div class="icons-nav ml-lg-2">
+            <a href="/carrinho" style="font-size: 14px;" class="fa-stack has-badge" data-count="8"><i class="fa fa-shopping-cart text-dark fa-2x fa-stack-2x fa-inverse" aria-hidden="true"></i></a>
         </div>
 
     </div>
@@ -232,6 +233,7 @@
 </header>
 
 <!-- Fixed header -->
+
 
     <main role="main" class="container mt-4">
         <div>
